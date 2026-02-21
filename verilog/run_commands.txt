@@ -1,0 +1,2 @@
+iverilog gates.v tb_gates.v -o simulation
+./simulation

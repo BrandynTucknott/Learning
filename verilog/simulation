@@ -1,0 +1,178 @@
+#! /usr/bin/vvp
+:ivl_version "11.0 (stable)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/system.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/v2005_math.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/va_math.vpi";
+S_0x616da6cf2040 .scope module, "mux_tb" "mux_tb" 2 1;
+ .timescale 0 0;
+P_0x616da6cb9a20 .param/str "GREEN" 0 2 3, "\033[32m";
+P_0x616da6cb9a60 .param/str "RED" 0 2 4, "\033[31m";
+P_0x616da6cb9aa0 .param/str "RESET" 0 2 5, "\033[0m";
+v0x616da6d0f310_0 .var "A", 0 0;
+v0x616da6d0f3d0_0 .var "B", 0 0;
+v0x616da6d0f490_0 .var "X", 0 0;
+v0x616da6d0f530 .array "expected", 7 0, 0 0;
+v0x616da6d0f5d0_0 .var/i "i", 31 0;
+v0x616da6d0f6c0_0 .net "out_behav", 0 0, v0x616da6cf5160_0;  1 drivers
+v0x616da6d0f760_0 .net "out_data", 0 0, L_0x616da6d0fe00;  1 drivers
+v0x616da6d0f800_0 .net "out_gate", 0 0, L_0x616da6d0fb70;  1 drivers
+S_0x616da6cf22c0 .scope module, "uut_behav" "multiplex_behavior" 2 15, 3 47 0, S_0x616da6cf2040;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "A";
+    .port_info 1 /INPUT 1 "B";
+    .port_info 2 /INPUT 1 "X";
+    .port_info 3 /OUTPUT 1 "out1";
+v0x616da6cf5650_0 .net "A", 0 0, v0x616da6d0f310_0;  1 drivers
+v0x616da6cf54b0_0 .net "B", 0 0, v0x616da6d0f3d0_0;  1 drivers
+v0x616da6cf52c0_0 .net "X", 0 0, v0x616da6d0f490_0;  1 drivers
+v0x616da6cf5160_0 .var "out1", 0 0;
+E_0x616da6cf40d0 .event edge, v0x616da6cf52c0_0, v0x616da6cf5650_0, v0x616da6cf54b0_0;
+S_0x616da6d0e220 .scope module, "uut_data" "multiplex_datalevel" 2 14, 3 31 0, S_0x616da6cf2040;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "A";
+    .port_info 1 /INPUT 1 "B";
+    .port_info 2 /INPUT 1 "X";
+    .port_info 3 /OUTPUT 1 "out1";
+L_0x616da6d0fc60 .functor NOT 1, v0x616da6d0f490_0, C4<0>, C4<0>, C4<0>;
+L_0x616da6d0fcd0 .functor AND 1, L_0x616da6d0fc60, v0x616da6d0f310_0, C4<1>, C4<1>;
+L_0x616da6d0fd90 .functor AND 1, v0x616da6d0f490_0, v0x616da6d0f3d0_0, C4<1>, C4<1>;
+L_0x616da6d0fe00 .functor OR 1, L_0x616da6d0fcd0, L_0x616da6d0fd90, C4<0>, C4<0>;
+v0x616da6d0e420_0 .net "A", 0 0, v0x616da6d0f310_0;  alias, 1 drivers
+v0x616da6d0e4c0_0 .net "B", 0 0, v0x616da6d0f3d0_0;  alias, 1 drivers
+v0x616da6d0e560_0 .net "X", 0 0, v0x616da6d0f490_0;  alias, 1 drivers
+v0x616da6d0e660_0 .net *"_ivl_0", 0 0, L_0x616da6d0fc60;  1 drivers
+v0x616da6d0e700_0 .net *"_ivl_2", 0 0, L_0x616da6d0fcd0;  1 drivers
+v0x616da6d0e7f0_0 .net *"_ivl_4", 0 0, L_0x616da6d0fd90;  1 drivers
+v0x616da6d0e8d0_0 .net "out1", 0 0, L_0x616da6d0fe00;  alias, 1 drivers
+S_0x616da6d0ea10 .scope module, "uut_gate" "multiplex_gatelevel" 2 13, 3 10 0, S_0x616da6cf2040;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "A";
+    .port_info 1 /INPUT 1 "B";
+    .port_info 2 /INPUT 1 "X";
+    .port_info 3 /OUTPUT 1 "out1";
+L_0x616da6d0f8a0 .functor NOT 1, v0x616da6d0f490_0, C4<0>, C4<0>, C4<0>;
+L_0x616da6d0f940 .functor AND 1, L_0x616da6d0f8a0, v0x616da6d0f310_0, C4<1>, C4<1>;
+L_0x616da6d0fa70 .functor AND 1, v0x616da6d0f490_0, v0x616da6d0f3d0_0, C4<1>, C4<1>;
+L_0x616da6d0fb70 .functor OR 1, L_0x616da6d0f940, L_0x616da6d0fa70, C4<0>, C4<0>;
+v0x616da6d0ec90_0 .net "A", 0 0, v0x616da6d0f310_0;  alias, 1 drivers
+v0x616da6d0ed80_0 .net "B", 0 0, v0x616da6d0f3d0_0;  alias, 1 drivers
+v0x616da6d0ee90_0 .net "X", 0 0, v0x616da6d0f490_0;  alias, 1 drivers
+v0x616da6d0ef80_0 .net "not_X", 0 0, L_0x616da6d0f8a0;  1 drivers
+v0x616da6d0f020_0 .net "out1", 0 0, L_0x616da6d0fb70;  alias, 1 drivers
+v0x616da6d0f110_0 .net "out_and1", 0 0, L_0x616da6d0f940;  1 drivers
+v0x616da6d0f1d0_0 .net "out_and2", 0 0, L_0x616da6d0fa70;  1 drivers
+    .scope S_0x616da6cf22c0;
+T_0 ;
+    %wait E_0x616da6cf40d0;
+    %load/vec4 v0x616da6cf52c0_0;
+    %pad/u 32;
+    %cmpi/e 0, 0, 32;
+    %jmp/0xz  T_0.0, 4;
+    %load/vec4 v0x616da6cf5650_0;
+    %store/vec4 v0x616da6cf5160_0, 0, 1;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/vec4 v0x616da6cf54b0_0;
+    %store/vec4 v0x616da6cf5160_0, 0, 1;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0, $push;
+    .scope S_0x616da6cf2040;
+T_1 ;
+    %pushi/vec4 0, 0, 1;
+    %ix/load 4, 0, 0;
+    %flag_set/imm 4, 0;
+    %store/vec4a v0x616da6d0f530, 4, 0;
+    %pushi/vec4 0, 0, 1;
+    %ix/load 4, 1, 0;
+    %flag_set/imm 4, 0;
+    %store/vec4a v0x616da6d0f530, 4, 0;
+    %pushi/vec4 0, 0, 1;
+    %ix/load 4, 2, 0;
+    %flag_set/imm 4, 0;
+    %store/vec4a v0x616da6d0f530, 4, 0;
+    %pushi/vec4 1, 0, 1;
+    %ix/load 4, 3, 0;
+    %flag_set/imm 4, 0;
+    %store/vec4a v0x616da6d0f530, 4, 0;
+    %pushi/vec4 1, 0, 1;
+    %ix/load 4, 4, 0;
+    %flag_set/imm 4, 0;
+    %store/vec4a v0x616da6d0f530, 4, 0;
+    %pushi/vec4 0, 0, 1;
+    %ix/load 4, 5, 0;
+    %flag_set/imm 4, 0;
+    %store/vec4a v0x616da6d0f530, 4, 0;
+    %pushi/vec4 1, 0, 1;
+    %ix/load 4, 6, 0;
+    %flag_set/imm 4, 0;
+    %store/vec4a v0x616da6d0f530, 4, 0;
+    %pushi/vec4 1, 0, 1;
+    %ix/load 4, 7, 0;
+    %flag_set/imm 4, 0;
+    %store/vec4a v0x616da6d0f530, 4, 0;
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v0x616da6d0f5d0_0, 0, 32;
+T_1.0 ;
+    %load/vec4 v0x616da6d0f5d0_0;
+    %cmpi/s 8, 0, 32;
+    %jmp/0xz T_1.1, 5;
+    %load/vec4 v0x616da6d0f5d0_0;
+    %pad/s 3;
+    %split/vec4 1;
+    %store/vec4 v0x616da6d0f490_0, 0, 1;
+    %split/vec4 1;
+    %store/vec4 v0x616da6d0f3d0_0, 0, 1;
+    %store/vec4 v0x616da6d0f310_0, 0, 1;
+    %delay 10, 0;
+    %load/vec4 v0x616da6d0f800_0;
+    %ix/getv/s 4, v0x616da6d0f5d0_0;
+    %load/vec4a v0x616da6d0f530, 4;
+    %cmp/e;
+    %flag_mov 8, 6;
+    %jmp/0 T_1.2, 8;
+    %pushi/vec4 458961714, 0, 32; draw_string_vec4
+    %pushi/vec4 109, 0, 8; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %jmp/1 T_1.3, 8;
+T_1.2 ; End of true expr.
+    %pushi/vec4 458961713, 0, 32; draw_string_vec4
+    %pushi/vec4 109, 0, 8; draw_string_vec4
+    %concat/vec4; draw_string_vec4
+    %jmp/0 T_1.3, 8;
+ ; End of false expr.
+    %blend;
+T_1.3;
+    %load/vec4 v0x616da6d0f800_0;
+    %ix/getv/s 4, v0x616da6d0f5d0_0;
+    %load/vec4a v0x616da6d0f530, 4;
+    %cmp/e;
+    %flag_mov 8, 6;
+    %jmp/0 T_1.4, 8;
+    %pushi/vec4 1346458451, 0, 32; draw_string_vec4
+    %jmp/1 T_1.5, 8;
+T_1.4 ; End of true expr.
+    %pushi/vec4 1178683724, 0, 32; draw_string_vec4
+    %jmp/0 T_1.5, 8;
+ ; End of false expr.
+    %blend;
+T_1.5;
+    %vpi_call 2 34 "$display", "A=%b B=%b X=%b | gate=%b data=%b behav=%b | expected=%b | %s%s%s", v0x616da6d0f310_0, v0x616da6d0f3d0_0, v0x616da6d0f490_0, v0x616da6d0f800_0, v0x616da6d0f760_0, v0x616da6d0f6c0_0, &A<v0x616da6d0f530, v0x616da6d0f5d0_0 >, S<1,vec4,u40>, S<0,vec4,u32>, P_0x616da6cb9aa0 {2 0 0};
+    %load/vec4 v0x616da6d0f5d0_0;
+    %addi 1, 0, 32;
+    %store/vec4 v0x616da6d0f5d0_0, 0, 32;
+    %jmp T_1.0;
+T_1.1 ;
+    %vpi_call 2 39 "$finish" {0 0 0};
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "tb_gates.v";
+    "gates.v";
